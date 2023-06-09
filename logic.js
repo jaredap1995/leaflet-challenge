@@ -48,17 +48,18 @@ d3.json(link).then(function(data) {
 
 
     // Set up the legend.
-    let legend = L.control({position: 'bottomright'});
+    let legend = L.control({position: 'bottomleft'});
 
     legend.onAdd = function (){
     let div = L.DomUtil.create('div', 'info legend');
     let grades = [-10, 10, 30, 50, 70, 90];
-    let labels = [];
+    let labels = ["Very Shallow", "Shallow", "Intermediate", "Moderately Deep", "Deep", "Very Deep"];
 
     for (let i = 0; i < grades.length; i++) {
-        dispatchEvent.innerHTML +=
-        '<i style="background:' + chooseColor(grades[i] + 1) + '"></i> ' +
-        grades[i] + (grades[i + 1] ? '&ndash;' + grades[i +1] + '<br>' : '+');
+        div.innerHTML +=
+      '<i style="background:' + chooseColor(grades[i] + 1) + '"></i> ' +
+      grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] :'+') +
+      ' : ' + labels[i] + '<br>';
     }
     return div;
 };
